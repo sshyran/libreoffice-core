@@ -163,6 +163,7 @@ AxisProperties::AxisProperties( const rtl::Reference< Axis >& xAxisModel
     , m_eTickmarkPos( css::chart::ChartAxisMarkPosition_AT_LABELS_AND_AXIS )
     , m_bCrossingAxisHasReverseDirection(false)
     , m_bCrossingAxisIsCategoryAxes(false)
+    , m_bDisplayDataTable(false)
     , m_bDisplayLabels( true )
     , m_bTryStaggeringFirst( false )
     , m_nNumberFormatKey(0)
@@ -253,6 +254,9 @@ void AxisProperties::init( bool bCartesian )
 
     if( bCartesian )
     {
+        if (m_nDimensionIndex == 0)
+            m_bDisplayDataTable = true;
+
         if( m_nDimensionIndex == 0 && m_nAxisType == AxisType::CATEGORY
                 && m_pExplicitCategoriesProvider && m_pExplicitCategoriesProvider->hasComplexCategories() )
             m_bComplexCategories = true;
